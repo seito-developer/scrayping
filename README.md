@@ -1,24 +1,24 @@
-# Scrayping demo with Node.js
+# Scrayping with Node.js
+This is a script for scrayping Web pages with Node.js
 
 ## Get start
 
-### Step.1
+__Step.1__
 
 ```
 npm i
 ```
 
-
-### Step.2
+__Step.2__
 
 You can edit config.js
 
-### Step.3
+__Step.3__
 
 ```
 npm run scrayping
 ```
 
-### Step.4
+__Step.4__
 
 You can get data.json in `./public`
