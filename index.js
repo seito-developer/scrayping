@@ -20,7 +20,7 @@ const updateOutput = (data) => {
 
 const getData = (htmlString) => {
 	const htmlDom = new JSDOM(htmlString);
-	const $title = htmlDom.window.document.getElementsByClassName('card__title');
+	const $title = htmlDom.window.document.getElementsByClassName(CONFIG.HEADING_CLASS);
 	const articleLen = $title.length;
 
  	let index = 0;
