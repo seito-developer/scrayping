@@ -1,0 +1,31 @@
+{
+  "name": "node-scrayping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "jsdom": "^16.2.2",
+    "jsonfile": "^6.0.1",
+    "node-html-parser": "^1.2.20",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "request-promise-native": "^1.0.8",
+    "scraperjs": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "scrayping": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seito-developer/scrayping.git"
+  },
+  "author": "Seito Horiguchi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seito-developer/scrayping/issues"
+  },
+  "homepage": "https://github.com/seito-developer/scrayping#readme"
+}
