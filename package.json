@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.3",
     "jsdom": "^16.2.2",
     "jsonfile": "^6.0.1",
     "node-html-parser": "^1.2.20",
