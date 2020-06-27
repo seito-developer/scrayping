@@ -2,18 +2,14 @@ const rp = require('request-promise');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const jsonfile = require('jsonfile');
-// const fs = require('fs');
 
-const OUTPUT = './public/data.json';
-const KEYWORD = 'ポケモン';
-const TARGET_URL = 'https://www.famitsu.com/search/?category=new-article&page=';
-const PAGES_LEN = 3;
+const CONFIG = require('./config.js');
+
 let pageCount = 1;
 let articleArray = [];
 
 const updateOutput = (data) => {
-	jsonfile.writeFile('./public/data.json', data, (err) => {
-	// fs.writeFile('./public/data.json', data, (err) => {
+	jsonfile.writeFile(CONFIG.OUTPUT, data, (err) => {
 	  if(err) {
 	    console.log(err);
 	  } else {
@@ -36,7 +32,7 @@ const getData = (htmlString) => {
   			url: $target.getAttribute('href')
   		};
 
-		if(obj.title.indexOf(KEYWORD) !== -1){
+		if(obj.title.indexOf(CONFIG.KEYWORD) !== -1){
 			articleArray.push(obj);
 		}
   		index++;
@@ -44,10 +40,10 @@ const getData = (htmlString) => {
 };
 
 const createList = (count) => {
-	rp.get(TARGET_URL + pageCount)
+	rp.get(CONFIG.TARGET_URL + pageCount)
 		.then((htmlString) => {
 			getData(htmlString);
-			if(pageCount < PAGES_LEN){
+			if(pageCount < CONFIG.PAGES_LEN){
 				pageCount++;
 				createList(pageCount);
 			} else {
