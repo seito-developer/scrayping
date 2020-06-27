@@ -3,15 +3,12 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const jsonfile = require('jsonfile');
 
+const OUTPUT = './public/data.json';
 const KEYWORD = 'ポケモン';
 const TARGET_URL = 'https://www.famitsu.com/search/?category=new-article&page=';
+const PAGES_LEN = 20;
 let pageCount = 1;
 let articleArray = [];
-
-const PAGES_LEN = 20;
-
-const file = './public/data.json';
-
 
 const getData = (htmlString) => {
 	const htmlDom = new JSDOM(htmlString);
@@ -34,27 +31,17 @@ const getData = (htmlString) => {
   	}
 };
 
-const foo = () => {
-	console.log('hi');
-	return new Promise((resolve) => {
-		while(pageCount < PAGES_LEN){
-			rp.get(TARGET_URL + pageCount)
-				.then((htmlString) => {
-					getData(htmlString);
-				})
-				.catch((error) => {
-			    	console.error('Error:', error);
-			  	});
-			// crawlPages(pageCount);
-			// console.log('articleArray', articleArray);
-			pageCount++;
-		}
-	});
-};
 
-const onFulfilled = (value) => {
-	console.log('articleArray', value);	
+const createList = (count) => {
+	rp.get(TARGET_URL + pageCount)
+		.then((htmlString) => {
+			getData(htmlString);
+			if(pageCount < PAGES_LEN){
+				pageCount++;
+				createList(pageCount);
+			} else {
+				console.log('articleArray', articleArray);
+			}
+		});
 };
-// bar();
-foo().then(onFulfilled(articleArray));
-	
+createList(pageCount);
